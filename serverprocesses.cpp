@@ -1,45 +1,30 @@
 #include "serverprocesses.h"
 
 
+serverProcesses::serverProcesses(int serverType, QObject *parent) :
+    QTcpServer(parent)
+{
+    this->serverType = serverType;
+}
 
-ServerProcesses::ServerProcesses()
+void serverProcesses::startServer(quint16 port)
 {
 
-
-}
-bool spawnGameThread(ServerData serverD){
-    bool created = false;
-
-    gameThread(serverD); //Create the game thread
-
-    // Update the ThreadContainer
-    // Update created if gameThread == ThreadContainer
-
-    return created;
+    if(!this->listen(QHostAddress::Any,port))
+    {
+        qDebug() << "Failed to Listen on port: " << port;
+    }
+    else
+    {
+        qDebug() << "Listening to port: " << port << "...";
+    }
 }
 
-bool terminateGameThread(int gameID){
+void serverProcesses::incomingConnection(qintptr socketDescriptor)
+{
+    qDebug() << socketDescriptor << " Connecting...";
 
-    bool isGameInactive = false;
-
-    //Search for game thread in the database
-    // if game thread is terminated change isGameInactive to true
-
-    return isGameInactive;
-}
-
-void processMsg(SocketData msg){
-
-    //calls check Validity
-    //switch statement based on the msg variable
 
 }
 
-bool checkValidity(){
-    bool isValid = false;
-
-    //checks the validity of the connection and encrypting the message
-    //called by processMsg
-
-    return isValid;
-}
+void processMessage

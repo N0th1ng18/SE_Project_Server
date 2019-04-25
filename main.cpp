@@ -1,25 +1,26 @@
 #include <QCoreApplication>
+#include <QTcpSocket>
+#include "mainserverconnection.h"
+#include "gamethreadprocesses.h"
+
+
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    int MAX_GAME_THREADS = 5;
-    int current_game_Threads = 0;
+
+
+    MainServerConnection* sc = new MainServerConnection();
+    sc->connectMainServer();
+    sc->listen();
+    sc->disconnectMainServer();
+
 
     return a.exec();
 }
 
-void createGameThread()
-{
 
-
-}
-
-void deleteGameThread()
-{
-
-}
 
 
 

@@ -2,10 +2,29 @@
 #define SERVERPROCESSES_H
 
 
-class ServerProcesses
+#include <QTcpServer>
+#include "gamethreadprocesses.h"
+
+class serverProcesses : public QTcpServer
 {
+    Q_OBJECT
 public:
-    ServerProcesses();
+    explicit serverProcesses(int serverType = 0, QObject *parent = nullptr);
+    void startServer(quint16 port);
+signals:
+
+public slots:
+
+protected:
+    void incomingConnection(qintptr socketDescriptor);
+
+private:
+    int serverType;
+
+    void processMessage(QString message);
+
+
+
 };
 
-#endif // SERVERPROCESSES_H
+#endif // SERVER_H

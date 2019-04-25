@@ -20,7 +20,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    gamethreadprocesses.cpp
+    gamethreadprocesses.cpp \
+    serverprocesses.cpp \
+    mainserverconnection.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -28,4 +30,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    gamethreadprocesses.h
+    gamethreadprocesses.h \
+    serverprocesses.h \
+    mainserverconnection.h

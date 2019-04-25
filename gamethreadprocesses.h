@@ -2,11 +2,13 @@
 #define GAMEMASTER_H
 
 #include <QObject>
-#include <QUdpSocket>
 #include <QThread>
+#include <QUdpSocket>
+#include <QDebug>
 
-class gameThreadProcesses: public QObject
+class GameThreadProcesses: public QThread
 {
+    Q_OBJECT
     struct gameState {
         int gameID,         //The game's info either already from the database or to be saved to the database
             currentTurn,
@@ -14,15 +16,16 @@ class gameThreadProcesses: public QObject
     };
 
 public:
-    gameThreadProcesses();
-    ~gameThreadProcesses();
+    GameThreadProcesses();
+    ~GameThreadProcesses();
 
 public slots:
-    void setup();
+    void setup(quint16 port);
     void readMessageBuffer();
-    void processMessage();
-    void beginGame();
-    void endGame();
+    bool processMessage(QString message);
+    bool beginGame(QString message);
+    bool resumeGame(QString message);
+    bool endGame(QString message);
 
 signals:
     void refreshPort();
@@ -32,6 +35,12 @@ signals:
 
 private:
     QUdpSocket *socket;
+    qintptr socketDescriptor;
+    enum Msg {
+        WAKEUP,
+        STARTGAME,
+        TERMINATEGAME
+    };
 
 };
 
