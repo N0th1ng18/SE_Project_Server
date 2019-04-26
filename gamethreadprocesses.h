@@ -16,13 +16,14 @@ class GameThreadProcesses: public QThread
     };
 
 public:
-    GameThreadProcesses();
+    explicit GameThreadProcesses(int gameID, quint16 port, QObject *parent = nullptr);
     ~GameThreadProcesses();
 
+    void run();
+
 public slots:
-    void setup(quint16 port);
     void readMessageBuffer();
-    bool processMessage(QString message);
+    void processMessage(QString message);
     bool beginGame(QString message);
     bool resumeGame(QString message);
     bool endGame(QString message);
@@ -36,6 +37,8 @@ signals:
 private:
     QUdpSocket *socket;
     qintptr socketDescriptor;
+    quint16 port;
+    int gameID;
     enum Msg {
         WAKEUP,
         STARTGAME,

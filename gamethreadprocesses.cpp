@@ -1,8 +1,10 @@
 #include "gamethreadprocesses.h"
 
-GameThreadProcesses::GameThreadProcesses()
+GameThreadProcesses::GameThreadProcesses(int gameID, quint16 port, QObject *parent) :
+    QThread(parent)
 {
-
+    this->gameID = gameID;
+    this->port = port;
 }
 
 GameThreadProcesses::~GameThreadProcesses()
@@ -11,14 +13,14 @@ GameThreadProcesses::~GameThreadProcesses()
 }
 
 
-void GameThreadProcesses::setup(quint16 port)
+void GameThreadProcesses::run()
 {
     socket = new QUdpSocket(this);
     socket->bind(QHostAddress::AnyIPv4, port);
 
     connect(socket, SIGNAL(socket.readyRead()), this, SLOT(readMessageBuffer()));
 
-
+    qDebug()<< "GameID: " << gameID << "is listening on port: " << port;
 }
 
 void GameThreadProcesses::readMessageBuffer()
@@ -36,7 +38,7 @@ void GameThreadProcesses::readMessageBuffer()
     }
 }
 
-bool GameThreadProcesses::processMessage(QString message)
+void GameThreadProcesses::processMessage(QString message)
 {
     QList<QString> tokens = message.split("|");
 
@@ -61,4 +63,20 @@ bool GameThreadProcesses::processMessage(QString message)
         }
         //improper messages dropped
     }
+}
+
+
+bool GameThreadProcesses::beginGame(QString message)
+{
+    //Check if MAX_GAME_THREADS
+
+}
+bool GameThreadProcesses::resumeGame(QString message)
+{
+    //Check if MAX_GAME_THREADS
+
+}
+bool GameThreadProcesses::endGame(QString message)
+{
+
 }

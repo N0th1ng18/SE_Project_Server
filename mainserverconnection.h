@@ -6,12 +6,13 @@
 #include <QTcpSocket>
 
 #include "gamethreadprocesses.h"
+#include "threadmanager.h"
 
 class MainServerConnection
 {
 
 public:
-    MainServerConnection();
+    MainServerConnection(quint16 startingPort, int MAX_GAME_THREADS);
     ~MainServerConnection();
     void connectMainServer(QObject *parent = nullptr);
     void listen();
@@ -33,6 +34,7 @@ private:
         WAKEUPGAME,
         TERMINATEGAME
     };
+    ThreadManager* tm;
 
 
 };

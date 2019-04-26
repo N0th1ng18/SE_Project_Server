@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
 
 
-    MainServerConnection* sc = new MainServerConnection();
+    MainServerConnection* sc = new MainServerConnection(5557, 5);
     sc->connectMainServer();
     sc->listen();
     sc->disconnectMainServer();

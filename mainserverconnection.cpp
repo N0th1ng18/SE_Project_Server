@@ -1,8 +1,12 @@
 #include "mainServerConnection.h"
 
-MainServerConnection::MainServerConnection()
+MainServerConnection::MainServerConnection(quint16 startingPort, int MAX_GAME_THREADS)
 {
+    tm = new ThreadManager(startingPort, MAX_GAME_THREADS);
 
+    //Port
+    tm->addGameThread(1234);
+    tm->addGameThread(1235);
 }
 
 MainServerConnection::~MainServerConnection()
@@ -60,7 +64,7 @@ void MainServerConnection::processMessage(QString message){
     switch(tokens[0].toInt())
     {
     case Msg::STARTGAME:
-
+        //tm->addGameThread(port);
         break;
     case Msg::WAKEUPGAME:
 
