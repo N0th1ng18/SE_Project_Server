@@ -78,7 +78,6 @@ void ServerConnectionThread::processMessage(QString message){
 void ServerConnectionThread::startGame(QList<QString> tokens)
 {
     //get gameId from MainServer message
-
     emit createGameThread(0/*gameId from tokens*/);
 }
 

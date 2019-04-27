@@ -8,6 +8,7 @@
 class MainServerListener : public QTcpServer
 {
     Q_OBJECT
+
 public:
     explicit MainServerListener(QObject *parent = nullptr);
     bool startServer(quint16 port);

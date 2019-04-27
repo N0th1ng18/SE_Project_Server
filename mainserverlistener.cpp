@@ -31,6 +31,7 @@ void MainServerListener::incomingConnection(qintptr socketDescriptor)
     connect(serverThread, SIGNAL(createGameThread(gameId)), this, SLOT(addGameThread(gameId)));
     connect(serverThread, SIGNAL(terminateGameThread(gameId)), this, SLOT(removeGameThread(gameId)));
 
+
     /*
      *
      *

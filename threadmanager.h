@@ -14,7 +14,6 @@ class ThreadManager : public QObject
 
 public:
     ThreadManager(quint16 startingPort, int MAX_GAME_THREADS);
-    ~ThreadManager();
 
 private:
     quint16 startingPort;
@@ -27,7 +26,7 @@ signals:
 
 public slots:
     bool addGameThread(int gameID);
-    void storeGameThread(GameThread* gameThread);
+    //void storeGameThread(GameThread* gameThread);
     void removeGameThread(int gameID);
     void createServerThread();
 
