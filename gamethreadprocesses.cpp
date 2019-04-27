@@ -21,6 +21,14 @@ void GameThreadProcesses::run()
     connect(socket, SIGNAL(socket.readyRead()), this, SLOT(readMessageBuffer()));
 
     qDebug()<< "GameID: " << gameID << "is listening on port: " << port;
+
+    /*
+     *              THIS IS WHERE GAME STUFF GOES
+     *
+     *
+     *
+     *
+     */
 }
 
 void GameThreadProcesses::readMessageBuffer()
@@ -58,7 +66,7 @@ void GameThreadProcesses::processMessage(QString message)
         }
         case Msg::TERMINATEGAME:
         {
-            endGame(message);
+
             break;
         }
         //improper messages dropped
@@ -71,12 +79,15 @@ bool GameThreadProcesses::beginGame(QString message)
     //Check if MAX_GAME_THREADS
 
 }
+
 bool GameThreadProcesses::resumeGame(QString message)
 {
     //Check if MAX_GAME_THREADS
 
 }
+
 bool GameThreadProcesses::endGame(QString message)
 {
 
 }
+

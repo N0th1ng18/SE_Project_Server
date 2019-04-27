@@ -19,8 +19,9 @@ public:
     void disconnectMainServer();
     void processMessage(QString message);
 
-    void spawnGameThread();
-    void terminateThread();
+    void startGame();
+    void wakeUpGame();
+    void terminateGame();
 
 
 private:

@@ -3,6 +3,7 @@
 
 #include <QCoreApplication>
 #include <QThread>
+#include <QObject>
 #include "gamethread.h"
 #include "gamethreadprocesses.h"
 
@@ -12,14 +13,17 @@ public:
     ThreadManager(quint16 startingPort, int MAX_GAME_THREADS);
     ~ThreadManager();
 
-    bool addGameThread(int gameID);
-    bool removeGameThread(int gameID);
 private:
     quint16 startingPort;
     int MAX_GAME_THREADS;
     QList<bool> freePorts;
 
     QList<GameThread*> gameThreads;
+
+public slots:
+    void storeGameThread(GameThread* gameThread);
+    bool addGameThread(int gameID);
+    bool removeGameThread(int gameID);
 
 };
 

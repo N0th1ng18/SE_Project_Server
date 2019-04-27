@@ -21,9 +21,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     gamethreadprocesses.cpp \
-    mainserverconnection.cpp \
     threadmanager.cpp \
-    gamethread.cpp
+    gamethread.cpp \
+    mainserverlistener.cpp \
+    serverconnectionthread.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -34,4 +35,6 @@ HEADERS += \
     gamethreadprocesses.h \
     mainserverconnection.h \
     threadmanager.h \
-    gamethread.h
+    gamethread.h \
+    mainserverlistener.h \
+    serverconnectionthread.h
