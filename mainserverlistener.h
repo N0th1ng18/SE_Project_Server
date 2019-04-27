@@ -9,8 +9,8 @@ class MainServerListener : public QTcpServer
 {
     Q_OBJECT
 public:
-    explicit MainServerListener(ThreadManager* tm, QObject *parent = nullptr);
-    void startServer(quint16 port);
+    explicit MainServerListener(QObject *parent = nullptr);
+    bool startServer(quint16 port);
 signals:
 
 public slots:
@@ -23,7 +23,6 @@ private:
 
     quint16 STARTING_PORT;
     int MAX_GAME_THREADS;
-    ThreadManager* tm;
 
 };
 

@@ -5,7 +5,6 @@ ServerConnectionThread::ServerConnectionThread(int threadID, qintptr socketID, Q
 {
     this->socketDescriptor = socketID;
     this->threadID = threadID;
-    tm = new ThreadManager(startingPort, MAX_GAME_THREADS);
 }
 
 void ServerConnectionThread::run()

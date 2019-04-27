@@ -6,12 +6,18 @@ ThreadManager::ThreadManager(quint16 startingPort, int MAX_GAME_THREADS)
     this->MAX_GAME_THREADS = MAX_GAME_THREADS;
 
     //Set FreePorts to Default Values
-    for(int i=0; i < MAX_GAME_THREADS; i++)
+    for(int i=0; i < MAX_GAME_THREADS + 1; i++)
     {
         freePorts.append(true);
     }
 }
 
+bool ThreadManager::createServerThread()
+{
+    MainServerListener *serverThread = new MainServerListener();
+    serverThread->startServer(startingPort);
+    freePorts.replace(0,false);
+}
 
 bool ThreadManager::addGameThread(int gameID)
 {
@@ -50,4 +56,6 @@ bool ThreadManager::removeGameThread(int gameID)
 {
 
 }
+
+
 

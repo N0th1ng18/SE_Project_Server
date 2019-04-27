@@ -5,9 +5,6 @@
 #include <QObject>
 #include <QTcpSocket>
 
-#include "gamethreadprocesses.h"
-#include "threadmanager.h"
-
 class MainServerConnection
 {
 
@@ -35,7 +32,6 @@ private:
         WAKEUPGAME,
         TERMINATEGAME
     };
-    ThreadManager* tm;
 
 
 };

@@ -5,7 +5,6 @@
 #include <QThread>
 #include <QTcpSocket>
 #include <QDebug>
-#include "threadmanager.h"
 
 class ServerConnectionThread : public QThread
 {
@@ -30,7 +29,6 @@ private:
     void processMessage(QString message);
     QTcpSocket *socket;
     qintptr socketDescriptor;
-    ThreadManager tm;
     int threadID;
 
     enum Msg
