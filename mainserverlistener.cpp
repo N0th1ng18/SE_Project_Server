@@ -43,5 +43,14 @@ void MainServerListener::incomingConnection(qintptr socketDescriptor)
 
 
     serverThread->start();
+}
 
+void MainServerListener::passAddGameThread(int gameId)
+{
+    emit addGameThread(gameId);
+}
+
+void MainServerListener::passRemoveGameThread(int gameId)
+{
+    emit removeGameThread(gameId);
 }

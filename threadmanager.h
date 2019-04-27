@@ -2,14 +2,16 @@
 #define THREADMANAGER_H
 
 #include <QCoreApplication>
-#include <QThread>
 #include <QObject>
+#include <QThread>
 #include "gamethread.h"
 #include "gamethreadprocesses.h"
 #include "mainserverlistener.h"
 
-class ThreadManager
+class ThreadManager : public QObject
 {
+    Q_OBJECT
+
 public:
     ThreadManager(quint16 startingPort, int MAX_GAME_THREADS);
     ~ThreadManager();

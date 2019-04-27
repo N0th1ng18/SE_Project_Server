@@ -11,9 +11,16 @@ class MainServerListener : public QTcpServer
 public:
     explicit MainServerListener(QObject *parent = nullptr);
     bool startServer(quint16 port);
+
 signals:
 
+    void addGameThread(int gameId);
+    void removeGameThread(int gameId);
+
 public slots:
+
+    void passAddGameThread(int gameId);
+    void passRemoveGameThread(int gameId);
 
 protected:
     void incomingConnection(qintptr socketDescriptor);
