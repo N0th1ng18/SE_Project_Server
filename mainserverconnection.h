@@ -1,5 +1,5 @@
-#ifndef mainServerConnection_H
-#define mainServerConnection_H
+#ifndef MAINSERVERCONNECTION_H
+#define MAINSERVERCONNECTION_H
 
 #include <QDebug>
 #include <QObject>

@@ -6,7 +6,7 @@ ServerConnectionThread::ServerConnectionThread(qintptr socketID, QObject *parent
     this->socketDescriptor = socketID;
 }
 
-void ServerConnectionThread::run()
+void ServerConnectionThread::setup()
 {
 
     //create Socket

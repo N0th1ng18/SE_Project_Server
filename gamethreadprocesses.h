@@ -1,5 +1,5 @@
-#ifndef GAMEMASTER_H
-#define GAMEMASTER_H
+#ifndef GAMETHREADPROCESSES_H
+#define GAMETHREADPROCESSES_H
 
 #include <QObject>
 #include <QThread>
@@ -19,7 +19,7 @@ public:
     explicit GameThreadProcesses(int gameID, quint16 port, QObject *parent = nullptr);
     ~GameThreadProcesses();
 
-    void run();
+    void setup();
 
 public slots:
     void readMessageBuffer();

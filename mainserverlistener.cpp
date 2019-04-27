@@ -27,9 +27,10 @@ void MainServerListener::incomingConnection(qintptr socketDescriptor)
     qDebug() << socketDescriptor << " Connecting...";
 
     ServerConnectionThread *serverThread = new ServerConnectionThread(socketDescriptor, this);
-    connect(serverThread, SIGNAL(finished()), serverThread, SLOT(deleteLater()));
-    connect(serverThread, SIGNAL(createGameThread(gameId)), this, SLOT(addGameThread(gameId)));
-    connect(serverThread, SIGNAL(terminateGameThread(gameId)), this, SLOT(removeGameThread(gameId)));
+    ServerConnectionThread::connect(serverThread, SIGNAL(finished()), serverThread, SLOT(deleteLater()));
+    ServerConnectionThread::connect(serverThread, SIGNAL(started()), serverThread, SLOT(setup()));
+    ServerConnectionThread::connect(serverThread, SIGNAL(createGameThread(int)), this, SLOT(passAddGameThread(int)));
+    ServerConnectionThread::connect(serverThread, SIGNAL(terminateGameThread(int)), this, SLOT(passRemoveGameThread(int)));
 
 
     /*

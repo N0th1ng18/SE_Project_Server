@@ -13,7 +13,7 @@ GameThreadProcesses::~GameThreadProcesses()
 }
 
 
-void GameThreadProcesses::run()
+void GameThreadProcesses::setup()
 {
     socket = new QUdpSocket(this);
     socket->bind(QHostAddress::AnyIPv4, port);

@@ -12,7 +12,7 @@ class ServerConnectionThread : public QThread
 public:
     explicit ServerConnectionThread(qintptr socketID, QObject *parent = nullptr);
 
-    void run();
+    //void run();
 
 
 signals:
@@ -24,6 +24,7 @@ signals:
 public slots:
     void readyRead();
     void disconnected();
+    void setup();
 
 private:
     void processMessage(QString message);

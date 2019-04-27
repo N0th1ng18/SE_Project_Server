@@ -15,8 +15,8 @@ ThreadManager::ThreadManager(quint16 startingPort, int MAX_GAME_THREADS)
 void ThreadManager::createServerThread()
 {
     MainServerListener *serverThread = new MainServerListener();
-    connect(serverThread, SIGNAL(addGameThread(gameId)), this, SLOT(createGameThread(int gameId)));
-    connect(serverThread, SIGNAL(removeGameThread(gameId)), this, SLOT(removeGameThread(int gameId)));
+    MainServerListener::connect(serverThread, SIGNAL(addGameThread(int)), this, SLOT(addGameThread(int)));
+    MainServerListener::connect(serverThread, SIGNAL(removeGameThread(int)), this, SLOT(removeGameThread(int)));
 
     if(serverThread->startServer(startingPort))
     {
@@ -48,6 +48,7 @@ bool ThreadManager::addGameThread(int gameID)
     //Create Thread
     GameThreadProcesses *thread = new GameThreadProcesses(gameID, port);
     thread->connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+
 
 
     //Create instance of GameThread

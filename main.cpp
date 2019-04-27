@@ -18,7 +18,6 @@ int main(int argc, char *argv[])
     tm->createServerThread();
 
 
-
     //TEST
     //GameThreadProcesses* testGame = new GameThreadProcesses(1, 5557);
     //testGame->start();
