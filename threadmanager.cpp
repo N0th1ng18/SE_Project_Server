@@ -12,11 +12,14 @@ ThreadManager::ThreadManager(quint16 startingPort, int MAX_GAME_THREADS)
     }
 }
 
-bool ThreadManager::createServerThread()
+void ThreadManager::createServerThread()
 {
     MainServerListener *serverThread = new MainServerListener();
-    serverThread->startServer(startingPort);
-    freePorts.replace(0,false);
+    if(serverThread->startServer(startingPort))
+    {
+        freePorts.replace(0,false);
+    }
+
 }
 
 bool ThreadManager::addGameThread(int gameID)
@@ -49,12 +52,14 @@ bool ThreadManager::addGameThread(int gameID)
 
     //Start Thread
     thread->start();
+    qDebug() << "Game Thread: " << gameThread->getGameID() << " started";
 
     return true;
 }
-bool ThreadManager::removeGameThread(int gameID)
+void ThreadManager::removeGameThread(int gameID)
 {
-
+    qDebug() << gameID;
+    //find gameId in gameThread and tell that thread to end game
 }
 
 

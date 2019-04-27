@@ -10,15 +10,15 @@ class ServerConnectionThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit ServerConnectionThread(int threadID, qintptr socketID, QObject *parent = nullptr);
+    explicit ServerConnectionThread(qintptr socketID, QObject *parent = nullptr);
 
     void run();
 
 
 signals:
     void error(QTcpSocket::SocketError socketerror);
-    void createGame();
-    void gameFinished();
+    void createGameThread(int gameId);
+    void terminateGameThread(int gameId);
 
 
 public slots:
@@ -29,18 +29,17 @@ private:
     void processMessage(QString message);
     QTcpSocket *socket;
     qintptr socketDescriptor;
-    int threadID;
 
     enum Msg
     {
         STARTGAME,
-        WAKEUPGAME,
         TERMINATEGAME
+        //WAKEUPGAME    ONLY USED IF WE ARE ALLOWING PAUSED GAMES
     };
 
-    void startGame();
-    void wakeUpGame();
-    void terminateGame();
+    void startGame(QList<QString> tokens);
+//    void wakeUpGame(QList<QString> tokens);  ONLY USED IF WE ARE ALLOWING PAUSED GAMES
+    void terminateGame(QList<QString> tokens);
 
 
 };

@@ -10,9 +10,14 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    ThreadManager* tm = new ThreadManager(5557,5);
+    quint16 STARTINGPORT = 5557;
+    int MAX_GAME_THREADS = 5;
 
-    tm->createServerThread()
+    ThreadManager* tm = new ThreadManager(STARTINGPORT, MAX_GAME_THREADS);
+
+    tm->createServerThread();
+
+
 
     //TEST
     //GameThreadProcesses* testGame = new GameThreadProcesses(1, 5557);

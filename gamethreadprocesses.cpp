@@ -54,40 +54,10 @@ void GameThreadProcesses::processMessage(QString message)
 
     switch(tokens[0].toInt())
     {
-        case Msg::WAKEUP:
-        {
-           resumeGame(message);
-           break;
-        }
-        case Msg::STARTGAME:
-        {
-           beginGame(message);
-           break;
-        }
-        case Msg::TERMINATEGAME:
-        {
-
-            break;
-        }
-        //improper messages dropped
+        /*
+         *
+         *      Messages from Clients go here
+         *
+         */
     }
 }
-
-
-bool GameThreadProcesses::beginGame(QString message)
-{
-    //Check if MAX_GAME_THREADS
-
-}
-
-bool GameThreadProcesses::resumeGame(QString message)
-{
-    //Check if MAX_GAME_THREADS
-
-}
-
-bool GameThreadProcesses::endGame(QString message)
-{
-
-}
-

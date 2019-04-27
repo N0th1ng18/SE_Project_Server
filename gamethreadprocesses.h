@@ -24,9 +24,9 @@ public:
 public slots:
     void readMessageBuffer();
     void processMessage(QString message);
-    bool beginGame(QString message);
-    bool resumeGame(QString message);
-    bool endGame(QString message);
+    //bool beginGame(QString message);
+   // bool resumeGame(QString message);
+   // bool endGame(QString message);
 
 signals:
     void refreshPort();

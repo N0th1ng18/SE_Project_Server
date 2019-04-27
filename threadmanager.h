@@ -20,14 +20,14 @@ private:
     QList<bool> freePorts;
     QList<GameThread*> gameThreads;
 
+signals:
 
 
 public slots:
-    void storeGameThread(GameThread* gameThread);
     bool addGameThread(int gameID);
-    bool removeGameThread(int gameID);
-
-    bool createServerThread();
+    void storeGameThread(GameThread* gameThread);
+    void removeGameThread(int gameID);
+    void createServerThread();
 
 };
 

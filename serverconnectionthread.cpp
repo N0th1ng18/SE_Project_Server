@@ -1,10 +1,9 @@
 #include "serverconnectionthread.h"
 
-ServerConnectionThread::ServerConnectionThread(int threadID, qintptr socketID, QObject *parent) :
+ServerConnectionThread::ServerConnectionThread(qintptr socketID, QObject *parent) :
     QThread(parent)
 {
     this->socketDescriptor = socketID;
-    this->threadID = threadID;
 }
 
 void ServerConnectionThread::run()
@@ -61,31 +60,42 @@ void ServerConnectionThread::processMessage(QString message){
     switch(tokens[0].toInt())
     {
     case Msg::STARTGAME:
-        startGame();
+        startGame(tokens);
         break;
-    case Msg::WAKEUPGAME:
-        wakeUpGame();
-        break;
+
     case Msg::TERMINATEGAME:
-        terminateGame();
+        terminateGame(tokens);
         break;
-    //Default Drops message
+
+//    case Msg::WAKEUPGAME:
+//        wakeUpGame(tokens);
+//        break;
+//                              Default Drops message
     }
 
 }
 
-void ServerConnectionThread::startGame(/*QString gameData*/)
+void ServerConnectionThread::startGame(QList<QString> tokens)
 {
-    emit createGame();
+    //get gameId from MainServer message
+
+    emit createGameThread(0/*gameId from tokens*/);
 }
 
-void ServerConnectionThread::wakeUpGame(/*QString gameData*/)
-{
+//
+//      ONLY USED IF WE ARE ALLOWING PAUSED GAMES
+//
+//
+//void ServerConnectionThread::wakeUpGame(QList<QString> tokens)
+//{
+//    emit createGameThread();
+//}
+//
+//
 
-}
-
-void ServerConnectionThread::terminateGame(/*QString gameData*/)
+void ServerConnectionThread::terminateGame(QList<QString> tokens)
 {
+    //get gameId from MainServer message
     //Send endGamePacket
-    emit gameFinished();
+    emit terminateGameThread(0/*gameId from tokens*/);
 }
