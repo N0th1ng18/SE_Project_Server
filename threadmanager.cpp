@@ -18,7 +18,7 @@ void ThreadManager::createServerThread()
 
     MainServerListener::connect(serverThread, SIGNAL(addGameThread(int)), this, SLOT(addGameThread(int)));
     MainServerListener::connect(serverThread, SIGNAL(removeGameThread(int)), this, SLOT(removeGameThread(int)));
-    MainServerListener::connect(this, SIGNAL(passGamePort(quint16)), serverThread, SLOT(passGamePort(quint16 port)));
+    ThreadManager::connect(this, SIGNAL(receivedGamePort(quint16)), serverThread, SLOT(passGamePort(quint16)));
 
     if(serverThread->startServer(startingPort))
     {
@@ -61,6 +61,7 @@ bool ThreadManager::addGameThread(int gameID)
     //Start Thread
     thread->start();
     qDebug() << "Game Thread: " << gameThread->getGameID() << " started on port: " << port;
+    emit receivedGamePort(port);
 
     return true;
 }
@@ -69,6 +70,5 @@ void ThreadManager::removeGameThread(int gameID)
     qDebug() << gameID;
     //find gameId in gameThread and tell that thread to end game
 }
-
 
 

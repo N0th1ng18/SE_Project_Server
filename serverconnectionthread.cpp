@@ -102,7 +102,7 @@ void ServerConnectionThread::terminateGame(QList<QString> tokens)
 void ServerConnectionThread:: passGamePort(quint16 port)
 {
     QByteArray response = "0|";
-    response.append(port);
+    response.append(QString::number(port));
     socket->write(response);
     socket->flush();
 }

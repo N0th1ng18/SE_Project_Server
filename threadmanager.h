@@ -22,7 +22,7 @@ private:
     QList<GameThread*> gameThreads;
 
 signals:
-    void passGamePort(quint16 port);
+    void receivedGamePort(quint16 port);
 
 public slots:
     bool addGameThread(int gameId);
