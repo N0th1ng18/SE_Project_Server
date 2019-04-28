@@ -22,13 +22,9 @@ void GameThreadProcesses::setup()
 
     qDebug()<< "GameID: " << gameID << "is listening on port: " << port;
 
-    /*
-     *              THIS IS WHERE GAME STUFF GOES
-     *
-     *
-     *
-     *
-     */
+    //Game Init
+
+
 }
 
 void GameThreadProcesses::readMessageBuffer()
@@ -59,5 +55,7 @@ void GameThreadProcesses::processMessage(QString message)
          *      Messages from Clients go here
          *
          */
+
+
     }
 }

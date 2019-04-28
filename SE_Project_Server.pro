@@ -1,5 +1,6 @@
 QT += core \
-    network
+    network \
+    opengl
 QT -= gui
 
 TARGET = QUdpSocket
@@ -24,7 +25,15 @@ SOURCES += \
     threadmanager.cpp \
     gamethread.cpp \
     mainserverlistener.cpp \
-    serverconnectionthread.cpp
+    serverconnectionthread.cpp \
+    serverstate.cpp \
+    player.cpp \
+    object.cpp \
+    powerup.cpp \
+    list.cpp \
+    textreader.cpp \
+    node.cpp \
+    map.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -37,4 +46,17 @@ HEADERS += \
     threadmanager.h \
     gamethread.h \
     mainserverlistener.h \
-    serverconnectionthread.h
+    serverconnectionthread.h \
+    serverstate.h \
+    player.h \
+    object.h \
+    powerup.h \
+    list.h \
+    textreader.h \
+    node.h \
+    map.h
+
+DISTFILES +=
+
+RESOURCES += \
+    resources.qrc
