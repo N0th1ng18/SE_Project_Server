@@ -9,6 +9,7 @@
 class GameThreadProcesses: public QThread
 {
     Q_OBJECT
+
     struct gameState {
         int gameID,         //The game's info either already from the database or to be saved to the database
             currentTurn,
@@ -24,7 +25,7 @@ public:
 public slots:
     void readMessageBuffer();
     void processMessage(QString message);
-    //bool beginGame(QString message);
+   // bool beginGame(QString message);
    // bool resumeGame(QString message);
    // bool endGame(QString message);
 

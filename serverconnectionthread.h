@@ -25,6 +25,7 @@ public slots:
     void readyRead();
     void disconnected();
     void setup();
+    void passGamePort(quint16 port);
 
 private:
     void processMessage(QString message);

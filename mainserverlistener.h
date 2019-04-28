@@ -16,11 +16,13 @@ public:
 signals:
 
     void addGameThread(int gameId);
+    void recievedGamePort(quint16 port);
     void removeGameThread(int gameId);
 
 public slots:
 
     void passAddGameThread(int gameId);
+    void passGamePort(quint16 port);
     void passRemoveGameThread(int gameId);
 
 protected:

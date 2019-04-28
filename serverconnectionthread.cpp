@@ -98,3 +98,11 @@ void ServerConnectionThread::terminateGame(QList<QString> tokens)
     //Send endGamePacket
     emit terminateGameThread(0/*gameId from tokens*/);
 }
+
+void ServerConnectionThread:: passGamePort(quint16 port)
+{
+    QByteArray response = "0|";
+    response.append(port);
+    socket->write(response);
+    socket->flush();
+}

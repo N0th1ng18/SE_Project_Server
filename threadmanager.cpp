@@ -15,8 +15,10 @@ ThreadManager::ThreadManager(quint16 startingPort, int MAX_GAME_THREADS)
 void ThreadManager::createServerThread()
 {
     MainServerListener *serverThread = new MainServerListener();
+
     MainServerListener::connect(serverThread, SIGNAL(addGameThread(int)), this, SLOT(addGameThread(int)));
     MainServerListener::connect(serverThread, SIGNAL(removeGameThread(int)), this, SLOT(removeGameThread(int)));
+    MainServerListener::connect(this, SIGNAL(passGamePort(quint16)), serverThread, SLOT(passGamePort(quint16 port)));
 
     if(serverThread->startServer(startingPort))
     {
@@ -42,6 +44,7 @@ bool ThreadManager::addGameThread(int gameID)
 
     //Failed to find open port
     if(port == 0){
+        qDebug() << "No available ports for this server";
         return false;
     }
 
@@ -57,7 +60,7 @@ bool ThreadManager::addGameThread(int gameID)
 
     //Start Thread
     thread->start();
-    qDebug() << "Game Thread: " << gameThread->getGameID() << " started";
+    qDebug() << "Game Thread: " << gameThread->getGameID() << " started on port: " << port;
 
     return true;
 }

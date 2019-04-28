@@ -22,10 +22,10 @@ private:
     QList<GameThread*> gameThreads;
 
 signals:
-
+    void passGamePort(quint16 port);
 
 public slots:
-    bool addGameThread(int gameID);
+    bool addGameThread(int gameId);
     //void storeGameThread(GameThread* gameThread);
     void removeGameThread(int gameID);
     void createServerThread();
