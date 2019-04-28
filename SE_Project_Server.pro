@@ -42,7 +42,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     gamethreadprocesses.h \
-    mainserverconnection.h \
     threadmanager.h \
     gamethread.h \
     mainserverlistener.h \

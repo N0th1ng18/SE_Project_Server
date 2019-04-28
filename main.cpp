@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    quint16 STARTINGPORT = 5557;
+    quint16 STARTINGPORT = 5556;
     int MAX_GAME_THREADS = 5;
 
     ThreadManager* tm = new ThreadManager(STARTINGPORT, MAX_GAME_THREADS);

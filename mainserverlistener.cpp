@@ -31,6 +31,7 @@ void MainServerListener::incomingConnection(qintptr socketDescriptor)
     ServerConnectionThread::connect(serverThread, SIGNAL(started()), serverThread, SLOT(setup()));
     ServerConnectionThread::connect(serverThread, SIGNAL(createGameThread(int)), this, SLOT(passAddGameThread(int)));
     ServerConnectionThread::connect(serverThread, SIGNAL(terminateGameThread(int)), this, SLOT(passRemoveGameThread(int)));
+    ServerConnectionThread::connect(this, SIGNAL(recievedGamePort(quint16)), serverThread, SLOT(passGamePort(quint16)));
 
 
     /*
@@ -55,4 +56,9 @@ void MainServerListener::passAddGameThread(int gameId)
 void MainServerListener::passRemoveGameThread(int gameId)
 {
     emit removeGameThread(gameId);
+}
+
+void MainServerListener::passGamePort(quint16 port)
+{
+    emit recievedGamePort(port);
 }
