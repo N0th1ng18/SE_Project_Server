@@ -37,7 +37,7 @@ void GameThreadProcesses::readMessageBuffer()
     {  
 
         QString data = socket->readAll();
-        QList<QString> messages = data.split("||");
+        QList<QString> messages = data.split("||", QString::SkipEmptyParts);
 
         for(int i=0; i < messages.size(); i++){
             processMessage(messages[i]);
@@ -48,7 +48,7 @@ void GameThreadProcesses::readMessageBuffer()
 
 void GameThreadProcesses::processMessage(QString message)
 {
-    QList<QString> tokens = message.split("|");
+    QList<QString> tokens = message.split("|", QString::SkipEmptyParts);
 
 
 

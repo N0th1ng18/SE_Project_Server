@@ -36,7 +36,7 @@ void ServerConnectionThread::readyRead()
     QString data = socket->readAll();
 
     //Break message into QList
-    QList<QString> messages = data.split("||");
+    QList<QString> messages = data.split("||", QString::SkipEmptyParts);
 
     for(int i=0; i < messages.size(); i++){
         processMessage(messages[i]);
@@ -55,7 +55,7 @@ void ServerConnectionThread::disconnected()
 void ServerConnectionThread::processMessage(QString message){
     qDebug() << "Server received (" << message << ") from MainServer";
     //Seperate message into tokens
-    QList<QString> tokens = message.split("|");
+    QList<QString> tokens = message.split("|", QString::SkipEmptyParts);
 
     switch(tokens[0].toInt())
     {
@@ -78,11 +78,12 @@ void ServerConnectionThread::processMessage(QString message){
 void ServerConnectionThread::startGame(QList<QString> tokens)
 {
     //get gameId from MainServer message
-    emit createGameThread(0/*gameId from tokens*/);
+
+    emit createGameThread(tokens.at(1).toInt());         /*gameId from tokens*/
 }
 
 //
-//      ONLY USED IF WE ARE ALLOWING PAUSED GAMES
+//      ONLY USED IF WE ARE ALLOWING DORMANT GAMES
 //
 //
 //void ServerConnectionThread::wakeUpGame(QList<QString> tokens)
@@ -101,7 +102,8 @@ void ServerConnectionThread::terminateGame(QList<QString> tokens)
 
 void ServerConnectionThread:: passGamePort(quint16 port)
 {
-    QByteArray response = "0|";
+    QByteArray response = "3|";
+    response.append("1|");
     response.append(QString::number(port));
     socket->write(response);
     socket->flush();
