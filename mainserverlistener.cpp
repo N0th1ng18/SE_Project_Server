@@ -7,6 +7,13 @@ MainServerListener::MainServerListener(QObject *parent) :
 
 }
 
+/*
+ *  Description:
+ *      Creates a threaded server to receive messages from the main server
+ *      upon recieving a main server connection
+ *  Contributors:
+ *
+ */
 bool MainServerListener::startServer(quint16 port)
 {
 
@@ -22,6 +29,13 @@ bool MainServerListener::startServer(quint16 port)
     }
 }
 
+/*
+ *  Description:
+ *      creates the actual connection thread from the incoming main server connection,
+ *
+ *  Contributors:
+ *      Isaac
+ */
 void MainServerListener::incomingConnection(qintptr socketDescriptor)
 {
     qDebug() << socketDescriptor << " Connecting...";
@@ -48,16 +62,37 @@ void MainServerListener::incomingConnection(qintptr socketDescriptor)
     serverThread->start();
 }
 
+
+/*
+ *  Description:
+ *      Daisy Chains gameId from created game server over to GameThreadProcesses
+ *      to create the game server as a child of the thread manager
+ *
+ *  Contributors:
+ *      Isaac
+ */
 void MainServerListener::passAddGameThread(int gameId)
 {
     emit addGameThread(gameId);
 }
 
+/*
+ *  Description:
+ *
+ *  Contributors:
+ *      Isaac
+ */
 void MainServerListener::passRemoveGameThread(int gameId)
 {
     emit removeGameThread(gameId);
 }
 
+/*
+ *  Description:
+ *      emits the port recieved from the
+ *  Contributors:
+ *      Isaac
+ */
 void MainServerListener::passGamePort(quint16 port)
 {
     emit recievedGamePort(port);

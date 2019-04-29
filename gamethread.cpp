@@ -1,3 +1,11 @@
+/*
+ *   Description:
+ *      This is a container class for storing information about the gameThreads
+ *      Used to access the gamethreads from inside the main function
+ *
+ *   Contributors:
+ *      Nick
+ */
 #include "gamethread.h"
 
 GameThread::GameThread(int gameID, QThread* thread, quint16 port)
