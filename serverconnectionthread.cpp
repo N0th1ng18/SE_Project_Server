@@ -93,10 +93,12 @@ void ServerConnectionThread::startGame(QList<QString> tokens)
 //
 //
 
+/*      Kills a Thread
+*       Send endGamePacket
+*/
 void ServerConnectionThread::terminateGame(QList<QString> tokens)
 {
-    //get gameId from MainServer message
-    //Send endGamePacket
+
     emit terminateGameThread(0/*gameId from tokens*/);
 }
 
