@@ -56,6 +56,7 @@ void ServerConnectionThread::processMessage(QString message){
     qDebug() << "Server received (" << message << ") from MainServer";
     //Seperate message into tokens
     QList<QString> tokens = message.split("|", QString::SkipEmptyParts);
+    qDebug() << message;
 
     switch(tokens[0].toInt())
     {
@@ -96,7 +97,6 @@ void ServerConnectionThread::startGame(QList<QString> tokens)
 void ServerConnectionThread::terminateGame(QList<QString> tokens)
 {
     //get gameId from MainServer message
-    //Send endGamePacket
     emit terminateGameThread(0/*gameId from tokens*/);
 }
 

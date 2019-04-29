@@ -45,6 +45,7 @@ void GameThreadProcesses::readMessageBuffer()
 void GameThreadProcesses::processMessage(QString message)
 {
     QList<QString> tokens = message.split("|", QString::SkipEmptyParts);
+    qDebug() << tokens;
 
 
 
