@@ -24,6 +24,7 @@ signals:
     void refreshPort();
     void saveGameState();
     void retrieveGameState();
+    void resetFreePort(quint16 port);
 
 
 private:

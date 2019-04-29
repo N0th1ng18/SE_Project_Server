@@ -29,6 +29,7 @@ public slots:
     //void storeGameThread(GameThread* gameThread);
     void removeGameThread(int gameID);
     void createServerThread();
+    void freePort(quint16 port);
 
 };
 

@@ -51,6 +51,7 @@ bool ThreadManager::addGameThread(int gameID)
     //Create Thread
     GameThreadProcesses *thread = new GameThreadProcesses(gameID, port);
     thread->connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+    thread->connect(thread, SIGNAL(resetFreePort(quint16)), this, SLOT(freePort(quint16)));
 
 
 
@@ -69,6 +70,12 @@ void ThreadManager::removeGameThread(int gameID)
 {
     qDebug() << gameID;
     //find gameId in gameThread and tell that thread to end game
+}
+
+void ThreadManager::freePort(quint16 port)
+{
+    int indexOfPort = port - startingPort;
+    freePorts.replace(indexOfPort, true);
 }
 
 
