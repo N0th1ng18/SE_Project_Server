@@ -7,16 +7,20 @@ class Node
 private:
     int x1, x2, y1, y2;
     Node * ptr1;
-    Node * ptr2;
 
 public:
-    Node();
-    Node(QVector<int> qv);
-    void setPointer(Node * n, Node * m);
-    Node getNode(Node * n);
-    QVector<int> getCoordinates(Node n);
-    Node * getPointer1();
-    Node * getPointer2();
+    Node(int x1, int x2, int y1, int y2);
+    ~Node();
+    void setX1(int x);
+    void setX2(int x);
+    void setY1(int y);
+    void setY2(int y);
+    int getX1();
+    int getX2();
+    int getY1();
+    int getY2();
+    void setPtr1(Node* node);
+    Node* getPtr1();
  };
 
 #endif // NODE_H

@@ -1,5 +1,6 @@
 <RCC>
-    <qresource prefix="/Maps">
+    <qresource prefix="/Maps"/>
+    <qresource prefix="/MapCoord">
         <file>coordinates.txt</file>
     </qresource>
 </RCC>

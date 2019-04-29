@@ -30,8 +30,7 @@ SOURCES += \
     player.cpp \
     object.cpp \
     powerup.cpp \
-    list.cpp \
-    textreader.cpp \
+    point.cpp \
     node.cpp \
     map.cpp
 
@@ -50,8 +49,8 @@ HEADERS += \
     player.h \
     object.h \
     powerup.h \
-    list.h \
     textreader.h \
+    point.h \
     node.h \
     map.h
 
