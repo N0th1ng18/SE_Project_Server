@@ -9,7 +9,7 @@ GameThreadProcesses::GameThreadProcesses(int gameID, quint16 port, QObject *pare
 
 GameThreadProcesses::~GameThreadProcesses()
 {
-    emit gameFinished(port);
+
 }
 
 
