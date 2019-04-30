@@ -2,16 +2,20 @@
 #define OBJECT_H
 
 #include <QOpenGLFunctions>
+#include <QOpenGLShaderProgram>
 
 class Object
 {
 public:
-    Object(int space);
+    Object();
     ~Object();
+
+    int getSpace();
+    QVector3D* getPos();
 
 private:
     int space; //Node*
-    QVector3D *pos = nullptr;
+    QVector3D* pos = nullptr;
 
 
     //Map Stuff
