@@ -1,12 +1,27 @@
 #include "mainserverlistener.h"
 
-
+/*
+ *  Description:
+ *     constructor for MainServerListener
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 MainServerListener::MainServerListener(QObject *parent) :
     QTcpServer(parent)
 {
 
 }
 
+/*
+ *  Description:
+ *      begins server to listen for imcomming connections
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 bool MainServerListener::startServer(quint16 port)
 {
 
@@ -22,6 +37,15 @@ bool MainServerListener::startServer(quint16 port)
     }
 }
 
+/*
+ *  Description:
+ *      Catches Incomming connections
+ *      spawns a SercerConnectionThread to maintain and handle that Connection
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 void MainServerListener::incomingConnection(qintptr socketDescriptor)
 {
     qDebug() << socketDescriptor << " Connecting...";
@@ -34,20 +58,18 @@ void MainServerListener::incomingConnection(qintptr socketDescriptor)
     ServerConnectionThread::connect(this, SIGNAL(recievedGamePort(quint16)), serverThread, SLOT(passGamePort(quint16)));
 
 
-    /*
-     *
-     *
-     *                  COME BACK TO THIS
-     *                          ISAAC
-     *
-     *
-     *
-     */
-
 
     serverThread->start();
 }
 
+/*
+ *  Description:
+ *      Next three are emits for slots and signals to maintain Heirarchy
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 void MainServerListener::passAddGameThread(int gameId)
 {
     emit addGameThread(gameId);

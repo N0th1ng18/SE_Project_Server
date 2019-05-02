@@ -1,5 +1,15 @@
 #include "serverstate.h"
 
+
+/*
+ *  Description:
+ *      Structure for adding and removing players from the game
+ *      store their game info for use in game
+ *
+ *  Author:
+ *      Nick
+ *
+ */
 ServerState::ServerState()
 {
     this->state = State::lobby;

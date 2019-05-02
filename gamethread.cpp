@@ -1,5 +1,13 @@
 #include "gamethread.h"
 
+/*
+ *  Description:
+ *      a structure for containing all game thread information per game thread processes
+ *
+ *  Authors:
+ *      Nick
+ */
+
 GameThread::GameThread(int gameID, QThread* thread, quint16 port)
 {
     this->gameID = gameID;

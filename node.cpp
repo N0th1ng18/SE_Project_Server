@@ -1,5 +1,13 @@
 #include "node.h"
 
+/*
+ *  Description:
+ *      object for setting and getting node points on the map
+ *
+ *  Author:
+ *      Nick
+ *
+ */
 Node::Node(int x1, int x2, int y1, int y2)
 {
     this->x1 = x1;

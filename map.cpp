@@ -1,16 +1,41 @@
 #include "map.h"
 
+/*
+ *  Description:
+ *      Constructor for map object
+ *
+ *  Author:
+ *      Nick
+ *
+ */
 Map::Map(QString fileLocation)
 {
     head = nullptr;
 
     loadMap(fileLocation);
 }
+
+/*
+ *  Description:
+ *      Destructor for map object
+ *
+ *  Author:
+ *      Nick
+ *
+ */
 Map::~Map()
 {
 
 }
 
+/*
+ *  Description:
+ *      gets head position of map node
+ *
+ *  Author:
+ *      Nick
+ *
+ */
 Node* Map::getHead(){
     return head;
 }
@@ -56,6 +81,15 @@ bool Map::loadMap(QString fileLocation)
     return true;
 }
 
+/*
+ *  Description:
+ *      gets the players starting node and roll
+ *      interpolates the movement to the final node for smooth player movement
+ *
+ *  Author:
+ *      Nick
+ *
+ */
 int Map::movePlayer(Node* startingNode, int roll, std::vector<Point*>& outList){
     //Check for node problem. This should never happen until the last node in the map.
     if(startingNode == nullptr)
@@ -80,6 +114,14 @@ int Map::movePlayer(Node* startingNode, int roll, std::vector<Point*>& outList){
     return 1; //It worked.
 }
 
+/*
+ *  Description:
+ *      gets a random position via node structure
+ *
+ *  Author:
+ *      Nick
+ *
+ */
 //Map Coordinates are locked to x1 > x2 and y1 > y2
 int Map::calcRandPos(int x1, int x2)
 {

@@ -1,5 +1,13 @@
 #include "gamethreadprocesses.h"
 
+/*
+ *  Description:
+ *      game thread constructor, imports gameID, port
+ *
+ *  Author:
+ *      Isaac, Nick
+ *
+ */
 GameThreadProcesses::GameThreadProcesses(int gameID, quint16 port, QObject *parent) :
     QThread(parent)
 {
@@ -7,12 +15,27 @@ GameThreadProcesses::GameThreadProcesses(int gameID, quint16 port, QObject *pare
     this->port = port;
 }
 
+/*
+ *  Description:
+ *      game thread destructor
+ *
+ *  Author:
+ *      Isaac, Nick
+ *
+ */
 GameThreadProcesses::~GameThreadProcesses()
 {
 
 }
 
-
+/*
+ *  Description:
+ *      begins UdpSocket for handling Client Game Communication
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 void GameThreadProcesses::setup()
 {
     socket = new QUdpSocket(this);
@@ -27,6 +50,14 @@ void GameThreadProcesses::setup()
 
 }
 
+/*
+ *  Description:
+ *      reads each message in the buffer and passes them to processMessage
+ *
+ *  Author:
+ *      Isaac, Nick
+ *
+ */
 void GameThreadProcesses::readMessageBuffer()
 {
     while(socket->hasPendingDatagrams())
@@ -37,6 +68,15 @@ void GameThreadProcesses::readMessageBuffer()
     }
 }
 
+/*
+ *  Description:
+ *      splits each message into tokens,
+ *      passes them to the correct method,
+ *
+ *  Author:
+ *      Isaac, Nick
+ *
+ */
 void GameThreadProcesses::processMessage(QNetworkDatagram datagram)
 {
     //Convert Datagram into QByteArray
@@ -141,6 +181,15 @@ void GameThreadProcesses::processMessage(QNetworkDatagram datagram)
 
 }
 
+/*
+ *  Description:
+ *      Takes tokens and constructs them into a sendable Datagram
+ *      Sends said datagram to each client in the game
+ *
+ *  Author:
+ *      Nick
+ *
+ */
 void GameThreadProcesses::sendMessageAll(QList<QString> tokens)
 {
     QByteArray array;
@@ -161,6 +210,14 @@ void GameThreadProcesses::sendMessageAll(QList<QString> tokens)
     }
 }
 
+/*
+ *  Description:
+ *      same as SendMessageAll, but sends to one client
+ *
+ *  Author:
+ *      Nick
+ *
+ */
 void GameThreadProcesses::sendMessage(QList<QString> tokens, QHostAddress address, quint16 port){
     QByteArray array;
 

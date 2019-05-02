@@ -1,5 +1,14 @@
 #include "threadmanager.h"
 
+
+/*
+ *  Description:
+ *      Thread Manager constructor for maintaining
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 ThreadManager::ThreadManager(quint16 startingPort, int MAX_GAME_THREADS)
 {
     this->startingPort = startingPort;
@@ -12,6 +21,17 @@ ThreadManager::ThreadManager(quint16 startingPort, int MAX_GAME_THREADS)
     }
 }
 
+
+/*
+ *  Description:
+ *      Creates a Connection thread for incomming main server connections
+ *      sets used port in freePorts to false
+ *      This is threaded incase the main server goes down
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 void ThreadManager::createServerThread()
 {
     MainServerListener *serverThread = new MainServerListener();
@@ -28,6 +48,17 @@ void ThreadManager::createServerThread()
 
 }
 
+
+/*
+ *  Description:
+ *      Creates a gameThread for running a game
+ *      sets freePort to false for the used port
+ *      creates a UdpSocket for handling Client-GameServer communication
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 bool ThreadManager::addGameThread(int gameID)
 {
     //Choose port
@@ -65,12 +96,30 @@ bool ThreadManager::addGameThread(int gameID)
 
     return true;
 }
+
+/*
+ *  Description:
+ *      not implemented
+ *      would be used in conjuntion with the other non-implemented method to pass the gameID to the Thread Manager for deletion
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 void ThreadManager::removeGameThread(int gameID)
 {
     qDebug() << gameID;
     //find gameId in gameThread and tell that thread to end game
 }
 
+/*
+ *  Description:
+ *
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 void ThreadManager::updateFreePorts(quint16 gamePort)
 {
     int index = gamePort - startingPort;

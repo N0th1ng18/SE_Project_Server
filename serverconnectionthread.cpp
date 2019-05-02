@@ -1,11 +1,29 @@
 #include "serverconnectionthread.h"
 
+/*
+ *  Description:
+ *      Constructor for ServerConnection.
+ *      sets socket descriptor to incomming connection descriptor
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 ServerConnectionThread::ServerConnectionThread(qintptr socketID, QObject *parent) :
     QThread(parent)
 {
     this->socketDescriptor = socketID;
 }
 
+
+/*
+ *  Description:
+ *      initial method, starts the TcpSocket for the connection
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 void ServerConnectionThread::setup()
 {
 
@@ -28,6 +46,16 @@ void ServerConnectionThread::setup()
     exec();
 }
 
+
+/*
+ *  Description:
+ *      activates on signal that a message has been recieved to the socket
+ *      splits message and passes to process message
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 void ServerConnectionThread::readyRead()
 {
     //If message doesnt have Active code it is sent to USERLOGIN only
@@ -52,6 +80,15 @@ void ServerConnectionThread::disconnected()
     exit(0);
 }
 
+
+/*
+ *  Description:
+ *      Processes each message and calls the proper method from the message header
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 void ServerConnectionThread::processMessage(QString message){
     qDebug() << "Server received (" << message << ") from MainServer";
     //Seperate message into tokens
@@ -94,12 +131,31 @@ void ServerConnectionThread::startGame(QList<QString> tokens)
 //
 //
 
+
+/*
+ *  Description:
+ *      not implemented
+ *      ends game of set gameID
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 void ServerConnectionThread::terminateGame(QList<QString> tokens)
 {
     //get gameId from MainServer message
     emit terminateGameThread(0/*gameId from tokens*/);
 }
 
+
+/*
+ *  Description:
+ *      part of daisy chain that passes gamePort to the client from the game server
+ *
+ *  Author:
+ *      Isaac
+ *
+ */
 void ServerConnectionThread:: passGamePort(quint16 port)
 {
     QByteArray response = "3|";

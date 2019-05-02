@@ -1,5 +1,14 @@
 #include "point.h"
 
+/*
+ *  Description:
+ *      structure for storing and getting node points for the map
+ *
+ *  Author:
+ *      Nick
+ *
+ */
+
 Point::Point(int x, int y)
 {
     this->x = x;

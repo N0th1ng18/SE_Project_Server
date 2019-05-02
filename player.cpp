@@ -1,5 +1,14 @@
 #include "player.h"
 
+/*
+ *  Description:
+ *      Structure for storing and getting player info
+ *
+ *  Author:
+ *      Nick
+ *
+ */
+
 Player::Player()
 {
     object = new Object();
